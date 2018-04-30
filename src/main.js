@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
 import Cookie from 'js-cookie'
+import MD5 from 'blueimp-md5'
 import './../static/reset.css'
 
 router.beforeEach((to, from, next) => {
@@ -26,6 +27,8 @@ Vue
   .use(ElementUI)
 
 Vue.prototype.Cookie = Cookie
+Vue.prototype.$md5 = MD5
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
