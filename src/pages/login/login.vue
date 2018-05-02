@@ -26,7 +26,7 @@ export default {
   created () {
     // 判断是否登录，已经登录直接跳转到主页
     if (this.Cookie.get('user')) {
-      this.$router.replace('/')
+      this.$router.replace('/index')
     } else {
     }
   },
@@ -38,7 +38,7 @@ export default {
         pwd: that.pwd
       })
 
-      this.$router.replace('/')
+      this.$router.replace('/index')
     }
   }
 }
