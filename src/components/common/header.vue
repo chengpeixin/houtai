@@ -7,7 +7,7 @@
         <el-menu-item index="SignOut">退出登录</el-menu-item>
       </el-submenu>
     </el-menu>
-    <el-col :span="12" style="width:200px;">
+    <el-col :span="12" style="width:10%;">
       <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         <el-menu-item index="2" @click="qution">
           <i class="el-icon-menu"></i>

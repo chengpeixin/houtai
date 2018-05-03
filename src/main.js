@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
 import Cookie from 'js-cookie'
+import axios from 'axios'
 import MD5 from 'blueimp-md5'
 import './../static/reset.css'
 
@@ -21,12 +22,13 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
+axios.defaults.baseURL = 'http://xinpeicheng.com:8070'
 Vue.config.productionTip = false
 Vue
   .use(ElementUI)
 
 Vue.prototype.Cookie = Cookie
+Vue.prototype.$http = axios
 Vue.prototype.$md5 = MD5
 
 /* eslint-disable no-new */

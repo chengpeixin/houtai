@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <router-view>
+    <router-view style="float:right;width:80%;margin-left:10%;">
       <Qution></Qution>
     </router-view>
   </div>

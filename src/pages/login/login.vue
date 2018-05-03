@@ -37,7 +37,6 @@ export default {
         name: that.uName,
         pwd: that.pwd
       })
-
       this.$router.replace('/index')
     }
   }
