@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button type="primary">添加问卷</el-button>
     <el-table :data="qutionList" stripe border style="width: 100%">
       <el-table-column type="index" label="序号" align="center" width="100px" sortable>
       </el-table-column>
