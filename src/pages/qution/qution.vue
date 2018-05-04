@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-table :data="qutionList" stripe border style="width: 100%">
-      <el-table-column type="index" :index="indexMethod" label="序号" align="center" width="100px" sortable>
+      <el-table-column type="index" label="序号" align="center" width="100px" sortable>
       </el-table-column>
       <el-table-column prop="wjName" align="center" label="问卷名称">
       </el-table-column>
