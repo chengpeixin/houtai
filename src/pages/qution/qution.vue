@@ -1,7 +1,13 @@
 <template>
   <div>
-    <el-button type="primary">添加问卷</el-button>
-    <el-table :data="qutionList" stripe border style="width: 100%">
+
+    <div :class="$style.toolbar">
+      <el-input placeholder="请输入内容" v-model="search" clearable :class="$style.search">
+        <i slot="prefix" class="el-input__icon el-icon-search"></i>
+      </el-input>
+      <el-button type="primary" :class="$style.addQution">添加问卷</el-button>
+    </div>
+    <el-table :data="qutionList" stripe border style="width: 100%;height:1000px;">
       <el-table-column type="index" label="序号" align="center" width="100px" sortable>
       </el-table-column>
       <el-table-column prop="wjName" align="center" label="问卷名称">
@@ -20,7 +26,8 @@
 export default {
   data () {
     return {
-      qutionList: []
+      qutionList: [],
+      search: ''
     }
   },
   created () {
@@ -49,14 +56,48 @@ export default {
     handleEdit (index, row) {
       console.log(index, row)
     },
+    toDelete (id) {
+      this.$http.post('/api/removeqution', { id: id }).then(res => {
+        console.log(res)
+      })
+    },
     handleDelete (index, row) {
-      this.qutionList.splice(index, 1)
-      console.log(index, row)
+      const that = this
+      this.$confirm('是否删除此张问卷?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          that.toDelete(row.id)
+          that.qutionList.splice(index, 1)
+          this.$notify({
+            title: '删除成功',
+            message: `${row.wjName}问卷已成功删除`,
+            type: 'success'
+          })
+        })
+        .catch(() => {})
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="stylus" module>
+.toolbar {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0px;
 
+  .addQution {
+    float: right;
+    margin-right: 100px;
+  }
+
+  .search {
+    float: left;
+    width: 300px;
+    margin-left: 100px;
+  }
+}
 </style>

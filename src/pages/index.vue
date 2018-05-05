@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <router-view style="float:right;width:80%;margin-left:10%;">
+    <router-view :class="$style.right">
       <Qution></Qution>
     </router-view>
   </div>
@@ -17,6 +17,11 @@ export default {
   }
 }
 </script>
-<style scoped>
-
+<style lang="stylus" module>
+.right {
+  float: left;
+  width: 90%;
+  height: 900px;
+  overflow: scroll;
+}
 </style>

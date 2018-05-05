@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-axios.defaults.baseURL = 'http://xinpeicheng.com:8070'
+axios.defaults.baseURL = 'http://xinpeicheng.com:8083'
 Vue.config.productionTip = false
 Vue
   .use(ElementUI)
