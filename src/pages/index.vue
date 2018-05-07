@@ -21,7 +21,8 @@ export default {
 .right {
   float: left;
   width: 90%;
-  height: 900px;
+  height: 700px;
   overflow: scroll;
+  overflow-x: hidden;
 }
 </style>

@@ -5,9 +5,9 @@
       <el-input placeholder="请输入内容" v-model="search" clearable :class="$style.search">
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
-      <el-button type="primary" :class="$style.addQution">添加问卷</el-button>
+      <el-button type="primary" @click="addqution" :class="$style.addQution">添加问卷</el-button>
     </div>
-    <el-table :data="qutionList" stripe border style="width: 100%;height:1000px;">
+    <el-table :data="qutionList" stripe border style="width: 100%;height:100%;">
       <el-table-column type="index" label="序号" align="center" width="100px" sortable>
       </el-table-column>
       <el-table-column prop="wjName" align="center" label="问卷名称">
@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'qution',
   data () {
     return {
       qutionList: [],
@@ -55,10 +56,11 @@ export default {
     },
     handleEdit (index, row) {
       console.log(index, row)
-    },
-    toDelete (id) {
-      this.$http.post('/api/removeqution', { id: id }).then(res => {
-        console.log(res)
+      this.$router.push({
+        path: 'wenti',
+        query: {
+          row
+        }
       })
     },
     handleDelete (index, row) {
@@ -69,15 +71,35 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          that.toDelete(row.id)
-          that.qutionList.splice(index, 1)
-          this.$notify({
-            title: '删除成功',
-            message: `${row.wjName}问卷已成功删除`,
-            type: 'success'
+          that.$http.post('/api/removeqution', { id: row.id }).then(res => {
+            console.log(res)
+            that.qutionList.splice(index, 1)
+            that.$notify({
+              title: '删除成功',
+              message: `${row.wjName}问卷已成功删除`,
+              type: 'success'
+            })
           })
         })
         .catch(() => {})
+    },
+    addqution () {
+      this.$prompt('输入要添加的问卷', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: `添加成功` + value
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          })
+        })
     }
   }
 }
@@ -88,6 +110,7 @@ export default {
   width: 100%;
   height: 40px;
   margin: 10px 0px;
+  overflow-x: hidden;
 
   .addQution {
     float: right;
