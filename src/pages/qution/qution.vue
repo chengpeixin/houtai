@@ -84,11 +84,19 @@ export default {
         .catch(() => {})
     },
     addqution () {
+      var that = this
       this.$prompt('输入要添加的问卷', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       })
         .then(({ value }) => {
+          // 添加问卷
+          this.qutionList.push({
+            examWjid: 0,
+            id: 32,
+            wjCode: '20',
+            wjName: 'value'
+          })
           this.$message({
             type: 'success',
             message: `添加成功` + value
